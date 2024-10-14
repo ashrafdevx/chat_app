@@ -22,9 +22,10 @@ app.use("/api/auth", authRoutes);
 app.use("/api/message", messageRoute);
 app.use("/api/user", userRoute);
 
+// app.use(express.static(path.join(dirname, "frontend/build")));
 app.use(express.static(path.join(dirname, "frontend/build")));
 app.get("*", (req, res) => {
-  res.sendFile(dirname, "frontend", "build", "index.html");
+  res.sendFile(path.join(dirname, "frontend", "build", "index.html"));
 });
 
 // PORT Server
