@@ -2,10 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-    background: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url("../public/bg.png") ;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: center;
+body {
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url("../public/bg.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+/* SCrolll BAr classes */
+::-webkit-scrollbar {
+  cursor: pointer !important;
+  width: 5px !important;
+}
+
+::-webkit-scrollbar-track {
+  cursor: pointer !important;
+  background: #555 !important;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 5px !important;
+  background: #121212 !important;
+}
+::-webkit-scrollbar-thumb {
+  background: #242424 !important;
 }
