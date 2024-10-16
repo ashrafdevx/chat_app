@@ -6,7 +6,7 @@ import userRoute from "./routes/user.routes.js";
 import path from "path";
 import dbConnection from "./db/dbconnection.js";
 import cookieParser from "cookie-parser";
-
+import cors from "cors";
 //ENV contastant
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -17,6 +17,13 @@ dotenv.config();
 // Middelware
 app.use(cookieParser());
 app.use(express.json());
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    methods: "GET,POST,PUT,DELETE",
+    allowedHeaders: "Content-Type,Authorization",
+  })
+);
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/message", messageRoute);
