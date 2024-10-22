@@ -26,7 +26,7 @@ const Login = () => {
           </div>
           <a
             className="mt-2 text-blue-500"
-            href="#"
+            href="/signup"
           >{`Don't have an account`}</a>
           <div className="w-full">
             <button className="btn btn-black w-full btn-sm mt-2">Login</button>

@@ -100,7 +100,7 @@ const Signup = () => {
           </div>
           <a
             className="mt-2 text-blue-500"
-            href="#"
+            href="/signin"
           >{`Already have an account`}</a>
           <div className="w-full">
             <button className="btn btn-black w-full btn-sm mt-2">
