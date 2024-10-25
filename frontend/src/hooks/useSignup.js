@@ -1,11 +1,11 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { Navigate } from "react-router-dom";
-import { useAuthContext } from "../context/Auth.context";
+import { useAuthContext } from "../context/AuthContext";
 
 const useSignup = () => {
   const [loader, setLoader] = useState(false);
-  // const { setAuthUSer } = useAuthContext();
+  const { setAuthUSer } = useAuthContext();
   const signup = async ({
     fullName,
     userName,
@@ -48,7 +48,7 @@ const useSignup = () => {
       const result = await res.json();
       localStorage.setItem("chat-user", JSON.stringify(result));
       console.log("response", result);
-      // setAuthUSer(result);
+      setAuthUSer(result);
       toast.success("Registered Successfully!!!");
       // return result;
     } catch (error) {
