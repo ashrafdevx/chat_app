@@ -12,13 +12,13 @@ export const sendMessage = async (req, res) => {
       paticipants: { $all: [senderId, recieverId] },
     });
     if (!conversation) {
-      conversation = Conversation.create({
+      conversation = await Conversation.create({
         paticipants: [senderId, recieverId],
         messages: [],
       });
     }
     const newMessage = new Message({ senderId, recieverId, message });
-    console.log("new Message", newMessage);
+
     conversation.messages.push(newMessage._id);
     await newMessage.save();
     await conversation.save();
@@ -28,5 +28,22 @@ export const sendMessage = async (req, res) => {
   } catch (error) {
     console.log("Message Controller :", error.message);
     res.status(500).json({ status: 500, error: error.message });
+  }
+};
+
+export const getMessages = async (req, res) => {
+  try {
+    const userToChatWith = req.params.id;
+    const loggedInUser = req.user;
+    const messages = await Conversation.findOne({
+      paticipants: { $all: [loggedInUser, userToChatWith] },
+    }).populate("messages");
+    if (!messages) {
+      return;
+    }
+    res.status(200).send(messages);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+    console.log("Get MEssage Controller : ", error.message);
   }
 };

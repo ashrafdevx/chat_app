@@ -46,7 +46,7 @@ const useSignup = () => {
         throw new Error(`Server Error: ${res.status} ${errorText}`);
       }
       const result = await res.json();
-      localStorage.setItem("chat-user", JSON.stringify(result));
+      localStorage.setItem("jwt", JSON.stringify(result));
       console.log("response", result);
       setAuthUSer(result);
       toast.success("Registered Successfully!!!");

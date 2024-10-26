@@ -21,6 +21,7 @@ export const UseLogin = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userName, password }),
+        credentials: "include",
       });
 
       const result = await res.json();
@@ -30,7 +31,7 @@ export const UseLogin = () => {
       }
 
       // Save user and show success message
-      localStorage.setItem("chat-user", JSON.stringify(result));
+      localStorage.setItem("jwt", JSON.stringify(result));
       setAuthUser(result);
       toast.success("Logged in successfully!");
     } catch (error) {

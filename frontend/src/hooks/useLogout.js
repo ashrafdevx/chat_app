@@ -22,7 +22,7 @@ export const UseLogout = () => {
       }
 
       // Clear the stored user data
-      localStorage.removeItem("chat-user");
+      localStorage.removeItem("jwt");
       setAuthUser(null);
       toast.success("Logged out successfully!");
     } catch (error) {

@@ -1,33 +1,34 @@
 import React from "react";
+import { useAuthContext } from "../../context/AuthContext";
+import { useConversation } from "../../zustand/useConversation";
+import { extractTime } from "../../utilis/extractTime";
 
-const Message = () => {
+const Message = ({ message }) => {
+  const { authUser } = useAuthContext();
+  const { selectedConversation } = useConversation();
+
+  const fromMe = authUser._id === message?.senderId;
+  console.log("fromMe", fromMe);
+  const chatStartEnd = fromMe ? "chat-end" : "chat-start";
+  const chatBubble = fromMe ? "chat-bubble chat-bubble-info" : "chat-bubble";
+  const profilePic = fromMe
+    ? authUser.profilePic
+    : selectedConversation.profilePic;
+
+  console.log(message);
   return (
     <div>
-      <div className="chat chat-start">
-        <div className="chat-image avatar">
+      <div className={`chat  ${chatStartEnd} `}>
+        <div className={`chat-image avatar `}>
           <div className="w-10 rounded-full">
-            <img
-              alt="Tailwind CSS chat bubble component"
-              src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-            />
+            <img alt="Tailwind CSS chat bubble component" src={profilePic} />
           </div>
         </div>
 
-        <div className="chat-bubble">You were the Chosen One!</div>
-        <div className="chat-footer opacity-50">Delivered</div>
-      </div>
-      <div className="chat chat-end">
-        <div className="chat-image avatar">
-          <div className="w-10 rounded-full">
-            <img
-              alt="Tailwind CSS chat bubble component"
-              src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-            />
-          </div>
+        <div className={`${chatBubble}`}>{message.message}</div>
+        <div className="chat-footer opacity-50 text-gray-400">
+          {extractTime(message?.createdAt)}
         </div>
-
-        <div className="chat-bubble">I hate you!</div>
-        <div className="chat-footer opacity-50">Seen at 12:46</div>
       </div>
     </div>
   );

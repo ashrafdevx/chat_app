@@ -87,7 +87,8 @@ export const SignIn = async (req, res) => {
     if (!user || !isPasswordCorrect) {
       res.status(400).json({ error: "Invalid Credentails" });
     }
-    generateToken(user.id, res);
+
+    generateToken(user._id, res);
     res.send(user);
   } catch (error) {
     console.log("Login Controller error :", error);
