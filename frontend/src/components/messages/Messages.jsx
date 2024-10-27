@@ -6,9 +6,6 @@ import Skeleton from "../../utilis/Skeleton";
 const Messages = () => {
   const { loading, messages } = useGetMessage(); // Ensure message is correctly named in the hook
 
-  console.log("loading", loading);
-  console.log("messages", messages.messages);
-
   // Scroll View
   const lastMessage = useRef();
 

@@ -21,8 +21,8 @@ export const useGetMessage = () => {
         if (!res.ok) {
           throw new Error("Failed to fetch messages");
         }
-
         const data = await res.json();
+        console.log("data", data);
         setAllMessages(data);
       } catch (error) {
         toast.error(error.message);

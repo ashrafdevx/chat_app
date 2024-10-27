@@ -8,14 +8,12 @@ const Message = ({ message }) => {
   const { selectedConversation } = useConversation();
 
   const fromMe = authUser._id === message?.senderId;
-  console.log("fromMe", fromMe);
   const chatStartEnd = fromMe ? "chat-end" : "chat-start";
   const chatBubble = fromMe ? "chat-bubble chat-bubble-info" : "chat-bubble";
   const profilePic = fromMe
     ? authUser.profilePic
     : selectedConversation.profilePic;
 
-  console.log(message);
   return (
     <div>
       <div className={`chat  ${chatStartEnd} `}>
@@ -25,7 +23,11 @@ const Message = ({ message }) => {
           </div>
         </div>
 
-        <div className={`${chatBubble}`}>{message.message}</div>
+        <div
+          className={`${chatBubble} overflow-x-hidden break-words whitespace-pre-wrap`}
+        >
+          {message.message}
+        </div>
         <div className="chat-footer opacity-50 text-gray-400">
           {extractTime(message?.createdAt)}
         </div>

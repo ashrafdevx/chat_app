@@ -3,8 +3,11 @@ import Messages from "./Messages";
 import MessageInput from "./messageInput";
 import { TiMessages } from "react-icons/ti";
 import { useConversation } from "../../zustand/useConversation";
+import { useAuthContext } from "../../context/AuthContext";
 
 const MessageContainer = () => {
+  const { authUser } = useAuthContext();
+  console.log(authUser);
   const { setSelectedConversation, selectedConversation } = useConversation();
   useEffect(() => {
     return () => {
@@ -17,11 +20,19 @@ const MessageContainer = () => {
         <NoChatSelected />
       ) : (
         <>
-          <div className=" bg-slate-500 px-4 py-2 mb-2">
-            <span className="label-text">To : </span>
-            <span className="text-gray-900 font-bold">
-              {selectedConversation.userName}
-            </span>
+          <div className=" bg-slate-500 flex justify-between px-4 py-2 mb-2">
+            <div className="w-full">
+              <span className="label-text">To : </span>
+              <span className="text-gray-900 font-bold">
+                {selectedConversation.fullName}
+              </span>
+            </div>
+            <div className="flex w-full justify-end">
+              <span className="label-text text-white font-bold">
+                {" "}
+                {authUser?.fullName.toUpperCase()}{" "}
+              </span>
+            </div>
           </div>
           <Messages />
           <MessageInput />
