@@ -18,7 +18,7 @@ const Signup = () => {
     }));
   };
 
-  const { loader, signup } = useSignup();
+  const { loader, signup } = useSignup(inputValues);
   const handleSubmit = async (e) => {
     e.preventDefault();
     await signup(inputValues);
@@ -42,7 +42,7 @@ const Signup = () => {
               onChange={(e) =>
                 setInputValues({ ...inputValues, fullName: e.target.value })
               }
-              value={inputValues.fullName}
+              value={inputValues?.fullName}
               className="w-full input input-bordered h-10"
             />
           </div>
@@ -57,7 +57,7 @@ const Signup = () => {
               onChange={(e) =>
                 setInputValues({ ...inputValues, userName: e.target.value })
               }
-              value={inputValues.userName}
+              value={inputValues?.userName}
             />
           </div>
           <div>
@@ -71,7 +71,7 @@ const Signup = () => {
               onChange={(e) =>
                 setInputValues({ ...inputValues, password: e.target.value })
               }
-              value={inputValues.password}
+              value={inputValues?.password}
             />
           </div>
           <div>
@@ -88,14 +88,14 @@ const Signup = () => {
                   confirmPassword: e.target.value,
                 })
               }
-              value={inputValues.confirmPassword}
+              value={inputValues?.confirmPassword}
             />
           </div>
           <div className="flex">
             <GenCheckBox
               name="gender"
               handleGenderCheckBox={handleGenderCheckBox}
-              value={inputValues.gender}
+              value={inputValues?.gender}
             />
           </div>
           <a
