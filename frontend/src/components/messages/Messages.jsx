@@ -18,14 +18,14 @@ const Messages = () => {
   return (
     <div className="px-4 overflow-auto flex-1">
       {!loading ? (
-        messages.messages?.length > 0 ? (
-          messages.messages.map((msg) => (
+        !loading && messages?.length === 0 ? (
+          <p>Select to start conversation</p>
+        ) : (
+          messages?.messages?.map((msg) => (
             <div ref={lastMessage} key={msg._id}>
               <Message message={msg} />
             </div>
           ))
-        ) : (
-          <p>Select to start conversation</p>
         )
       ) : (
         <Skeleton />

@@ -7,7 +7,6 @@ import { useAuthContext } from "../../context/AuthContext";
 
 const MessageContainer = () => {
   const { authUser } = useAuthContext();
-  console.log(authUser);
   const { setSelectedConversation, selectedConversation } = useConversation();
   useEffect(() => {
     return () => {
@@ -45,10 +44,11 @@ const MessageContainer = () => {
 export default MessageContainer;
 
 const NoChatSelected = () => {
+  const { authUser } = useAuthContext();
   return (
     <div className="flex items-center justify-center w-full h-full">
       <div className="px-4 text-center sm:text-lg md:text-xl  text-gray-200 font-semibold flex flex-col items-center">
-        <p className="">Wel Come ✋ John Doe 🏵️</p>
+        <p className="">Wel Come ✋ {authUser?.fullName.toUpperCase()} 🏵️</p>
         <p className="">Select a chat to start chat</p>
         <TiMessages className="text-3xl md:text-6xl text-center" />
       </div>

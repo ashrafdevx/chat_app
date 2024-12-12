@@ -3,7 +3,7 @@ import { useConversation } from "../../zustand/useConversation";
 
 const Conversation = ({ emoji, conversations, lastIndex }) => {
   const { setSelectedConversation, selectedConversation } = useConversation();
-
+  console.log("conversations?.isOnline", conversations);
   return (
     <div
       className={`flex items-center gap-2 ${
@@ -13,7 +13,7 @@ const Conversation = ({ emoji, conversations, lastIndex }) => {
       `}
       onClick={() => setSelectedConversation(conversations)}
     >
-      <div className="avatar offline">
+      <div className={`avatar ${conversations?.isOnline ? "online" : ""}`}>
         <div className="w-12 rounded-full">
           <img src={conversations.profilePic} alt={conversations.profilePic} />
         </div>

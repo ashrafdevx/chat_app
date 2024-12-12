@@ -6,11 +6,10 @@ export const useGetMessage = () => {
   const [loading, setLoading] = useState(false);
   const [messages, setAllMessages] = useState([]);
   const { selectedConversation } = useConversation();
-
   useEffect(() => {
     const getMessages = async () => {
-      setLoading(true);
       try {
+        // setLoading(true); // Start loading
         const res = await fetch(
           `http://localhost:5000/api/message/${selectedConversation._id}`,
           {
@@ -22,20 +21,21 @@ export const useGetMessage = () => {
           throw new Error("Failed to fetch messages");
         }
         const data = await res.json();
-        console.log("data", data);
+
+        setLoading(false);
         setAllMessages(data);
       } catch (error) {
         toast.error(error.message);
         console.log("error.message", error.message);
       } finally {
-        setLoading(false);
+        setLoading(false); // Stop loading after try or catch
       }
     };
 
-    if (selectedConversation?._id) {
+    if (selectedConversation._id) {
       getMessages();
     }
-  }, [selectedConversation?._id]);
+  }, [selectedConversation._id]);
 
   return { loading, messages };
 };

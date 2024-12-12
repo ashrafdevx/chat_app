@@ -29,7 +29,6 @@ export const UseLogin = () => {
       if (result.error) {
         throw new Error(result.message);
       }
-      console.log("result", result);
       // Save user and show success message
       localStorage.setItem("jwt", JSON.stringify(result));
       setAuthUser(result);

@@ -7,8 +7,9 @@ import path from "path";
 import dbConnection from "./db/dbconnection.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import { app, server } from "./socket/socket.js";
 //ENV contastant
-const app = express();
+
 const PORT = process.env.PORT || 5000;
 const dirname = path.resolve();
 // Config
@@ -37,7 +38,7 @@ app.get("*", (req, res) => {
 });
 
 // PORT Server
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   dbConnection();
   console.log(`Server running on port ${PORT}`);
 });
