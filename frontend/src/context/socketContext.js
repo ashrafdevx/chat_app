@@ -21,9 +21,7 @@ export const SocketProvider = ({ children }) => {
         },
       });
       setSocket(clientSocket);
-      console.log("Context socket", clientSocket);
       clientSocket.on("getOnlineUser", (users) => {
-        console.log("Context User", users);
         setOnlineUsers(users);
       });
       return () => {
@@ -32,6 +30,7 @@ export const SocketProvider = ({ children }) => {
     } else {
       if (clientSocket) {
         clientSocket.disconnect();
+        setSocket(null);
       }
     }
   }, [authUser]);

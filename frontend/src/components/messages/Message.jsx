@@ -13,7 +13,6 @@ const Message = ({ message }) => {
   const profilePic = fromMe
     ? authUser.profilePic
     : selectedConversation.profilePic;
-
   return (
     <div>
       <div className={`chat  ${chatStartEnd} `}>

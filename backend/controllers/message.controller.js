@@ -43,6 +43,7 @@ export const getMessages = async (req, res) => {
     const messages = await Conversation.findOne({
       paticipants: { $all: [loggedInUser, userToChatWith] },
     }).populate("messages");
+    console.log("conversation", messages);
     if (!messages) {
       return;
     }

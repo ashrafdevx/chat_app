@@ -25,9 +25,6 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     if (userId && userSocketMap[userId]) {
       delete userSocketMap[userId];
-      console.log(
-        `User ${userId} disconnected and removed from userSocketMap.`
-      );
     }
     io.emit("getOnlineUser", Object.keys(userSocketMap));
   });

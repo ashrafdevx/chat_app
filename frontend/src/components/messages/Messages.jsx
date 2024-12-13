@@ -2,11 +2,10 @@ import React, { useEffect, useRef } from "react";
 import Message from "./Message";
 import { useGetMessage } from "../../hooks/useGetMessages";
 import Skeleton from "../../utilis/Skeleton";
-import useListenMessage from "../../hooks/useListenMessage";
 
 const Messages = () => {
   const { loading, messages } = useGetMessage(); // Ensure message is correctly named in the hook
-  useListenMessage();
+
   // Scroll View
   const lastMessage = useRef();
 
@@ -22,7 +21,7 @@ const Messages = () => {
         !loading && messages?.length === 0 ? (
           <p>Select to start conversation</p>
         ) : (
-          messages?.messages?.map((msg) => (
+          messages?.map((msg) => (
             <div ref={lastMessage} key={msg._id}>
               <Message message={msg} />
             </div>

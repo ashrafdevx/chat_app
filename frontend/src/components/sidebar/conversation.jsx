@@ -3,7 +3,6 @@ import { useConversation } from "../../zustand/useConversation";
 
 const Conversation = ({ emoji, conversations, lastIndex }) => {
   const { setSelectedConversation, selectedConversation } = useConversation();
-  console.log("conversations?.isOnline", conversations);
   return (
     <div
       className={`flex items-center gap-2 ${

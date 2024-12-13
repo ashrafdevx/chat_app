@@ -1,41 +1,44 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useConversation } from "../zustand/useConversation";
-
+import axios from "axios";
 export const useGetMessage = () => {
   const [loading, setLoading] = useState(false);
-  const [messages, setAllMessages] = useState([]);
-  const { selectedConversation } = useConversation();
+  // const [messages, sentMessage] = useState([]);
+  const { selectedConversation, messages, sentMessage } = useConversation();
+  // console.log("check if the all message upate or not :", messages);
   useEffect(() => {
     const getMessages = async () => {
       try {
-        // setLoading(true); // Start loading
-        const res = await fetch(
-          `http://localhost:5000/api/message/${selectedConversation._id}`,
+        setLoading(true); // Start loading
+
+        const res = await axios.get(
+          `http://localhost:5000/api/message/${selectedConversation?._id}`,
           {
-            method: "GET",
-            credentials: "include",
+            withCredentials: true, // Ensures cookies are sent with the request
           }
         );
-        if (!res.ok) {
-          throw new Error("Failed to fetch messages");
+        // Check if the response is valid and has messages
+        if (!res?.data || !res.data.messages) {
+          sentMessage([]); // Return empty array if no messages
+        } else {
+          // console.log("Get All Message", res.data);
+          sentMessage(res.data); // Set messages if available
         }
-        const data = await res.json();
-
-        setLoading(false);
-        setAllMessages(data);
       } catch (error) {
         toast.error(error.message);
-        console.log("error.message", error.message);
+        console.error("Error fetching messages:", error.message);
       } finally {
-        setLoading(false); // Stop loading after try or catch
+        setLoading(false); // Stop loading
       }
     };
 
-    if (selectedConversation._id) {
-      getMessages();
+    if (selectedConversation?._id) {
+      getMessages(); // Call the async function
+    } else {
+      sentMessage([]);
     }
-  }, [selectedConversation._id]);
+  }, [selectedConversation, sentMessage]);
 
   return { loading, messages };
 };
