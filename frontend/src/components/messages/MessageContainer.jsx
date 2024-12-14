@@ -13,7 +13,7 @@ const MessageContainer = () => {
       setSelectedConversation(null);
     };
   }, [setSelectedConversation]);
-  // console.log("selectedConversation", selectedConversation);
+
   return (
     <div className="md:min-w-[450px] flex flex-col">
       {!selectedConversation ? (
