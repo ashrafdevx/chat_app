@@ -9,7 +9,6 @@ const useListenMessage = () => {
   useEffect(() => {
     socket?.on("newMessage", (newMessage) => {
       if (newMessage?.message) {
-        // Add the shake key to the message
         const updatedMessage = {
           ...newMessage,
           shouldShake: true,
