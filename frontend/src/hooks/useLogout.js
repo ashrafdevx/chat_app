@@ -21,7 +21,7 @@ export const UseLogout = () => {
         throw new Error(result.error || "Failed to logout");
       }
 
-      // Clear the stored user data
+      // Clear the local storage stored user data
       localStorage.removeItem("jwt");
       setAuthUser(null);
       toast.success("Logged out successfully!");
