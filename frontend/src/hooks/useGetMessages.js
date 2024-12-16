@@ -34,7 +34,7 @@ export const useGetMessage = () => {
     };
 
     if (selectedConversation?._id) {
-      getMessages(); // Call the async function
+      getMessages();
     } else {
       sentMessage([]);
     }
