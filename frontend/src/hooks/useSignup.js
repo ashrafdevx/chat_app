@@ -9,7 +9,6 @@ const useSignup = () => {
   const { setAuthUser } = useAuthContext();
   console.log("AuthContext Values:", setAuthUser);
   const signup = async (arg) => {
-    // Validate input fields
     const success = handleCheckValidation(arg);
     if (!success) {
       return;
