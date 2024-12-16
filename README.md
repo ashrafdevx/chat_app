@@ -31,7 +31,6 @@ git clone https://github.com/ashrafdevx/chat_app.git
 cd chat_app
 
 
-##  🌐 Tech Stack
 ## 🌐 Tech Stack  
 
 Here’s the tech stack used in this project:
