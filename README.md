@@ -27,3 +27,5 @@ CLIENT_URL=http://localhost:3000
 
 ##  🛠️ Installation
 Clone the repository:
+git clone https://github.com/ashrafdevx/chat_app.git
+cd chat_app
