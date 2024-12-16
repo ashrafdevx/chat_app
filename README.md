@@ -22,6 +22,6 @@ PORT=5000
 MONGO_URI=your_mongodb_connection_string  
 JWT_SECRET=your_jwt_secret  
 CLIENT_URL=http://localhost:3000
-
+---
 ##  🛠️ Installation
 Clone the repository:
