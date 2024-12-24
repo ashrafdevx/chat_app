@@ -17,9 +17,10 @@ const Conversations = () => {
 
   return (
     <div className="flex py-2 overflow-auto flex-col ">
-      {onlineStatus?.map((item) => {
+      {onlineStatus?.map((item, ind) => {
         return (
           <Conversation
+            key={ind}
             conversations={item}
             emoji={getRandomEmojis()}
             lastIndex={item.length - 1}
