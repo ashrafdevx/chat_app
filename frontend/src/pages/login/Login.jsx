@@ -47,7 +47,7 @@ const Login = () => {
           >{`Don't have an account`}</a>
           <div className="w-full">
             <button className="btn btn-black w-full btn-sm mt-2" type="submit">
-              Login
+              {loading ? "processing..." : "Login"}
             </button>
           </div>
         </form>
