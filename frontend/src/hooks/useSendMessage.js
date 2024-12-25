@@ -31,17 +31,16 @@ export const useMessage = () => {
       );
 
       const result = await res.json();
-
+      console.log("sent Message", result);
       if (result.error) {
         // Rollback the UI if there's an error
         sentMessage(messages); // Revert to the previous state
         throw new Error(result.error);
       }
 
-      // Replace the temporary message with the server-confirmed message
       sentMessage([
         ...messages.filter((m) => m._id !== tempMessage._id), // Remove the temp message
-        result, // Add the server-confirmed message
+        result,
       ]);
     } catch (error) {
       toast.error(error.message);

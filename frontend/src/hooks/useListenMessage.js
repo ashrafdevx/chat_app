@@ -19,9 +19,11 @@ const useListenMessage = () => {
         sound.play();
 
         const allMessages = [...messages, updatedMessage];
-        // console.log("newMessage", allMessages);
-
-        sentMessage(allMessages);
+        if (Array.isArray(messages)) {
+          sentMessage(allMessages);
+        } else {
+          sentMessage([updatedMessage]); // Ensure it falls back to an array
+        }
       }
     });
 

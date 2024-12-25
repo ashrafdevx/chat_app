@@ -85,11 +85,12 @@ export const useGetMessage = () => {
             withCredentials: true,
           }
         );
-        if (!res?.data || !res.data.messages) {
-          sentMessage([]); //
+
+        if (!res?.data || !Array.isArray(res.data.messages)) {
+          sentMessage([]); // Ensure messages is always an array
         } else {
-          console.log("Get All Message", res.data);
-          sentMessage(res.data);
+          // console.log("Get All Messages", res.data.messages);
+          sentMessage(res.data.messages); // Pass only the messages array
         }
       } catch (error) {
         toast.error(error.message);
@@ -102,7 +103,7 @@ export const useGetMessage = () => {
     if (selectedConversation?._id) {
       getMessages();
     } else {
-      sentMessage([]);
+      sentMessage([]); // Reset messages when no conversation is selected
     }
   }, [selectedConversation, sentMessage]);
 

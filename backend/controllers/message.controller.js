@@ -40,7 +40,7 @@ export const sendMessage = async (req, res) => {
 
     return res.status(200).json({
       status: 200,
-      message: "Message sent successfully",
+      message: message,
       conversation,
     });
   } catch (error) {

@@ -15,18 +15,19 @@ const Messages = () => {
       lastMessage?.current?.scrollIntoView({ behavior: "smooth" });
     }, 100);
   }, [messages]);
-
   return (
     <div className="px-4 overflow-auto flex-1">
       {!loading ? (
-        !loading && messages?.length === 0 ? (
+        Array.isArray(messages) && messages.length === 0 ? (
           <p>Select to start conversation</p>
-        ) : (
-          messages?.map((msg) => (
+        ) : Array.isArray(messages) ? (
+          messages.map((msg) => (
             <div ref={lastMessage} key={msg._id}>
               <Message message={msg} />
             </div>
           ))
+        ) : (
+          <p>Invalid messages format</p>
         )
       ) : (
         <Skeleton />
