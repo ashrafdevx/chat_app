@@ -1,11 +1,12 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useConversation } from "../zustand/useConversation";
+import { useAuthContext } from "../context/AuthContext";
 
 export const useMessage = () => {
   const [loading, setLoading] = useState(false);
   const { selectedConversation, sentMessage, messages } = useConversation();
-
+  const { authUser } = useAuthContext();
   const sendMessage = async (msg) => {
     setLoading(true);
     try {
@@ -14,7 +15,7 @@ export const useMessage = () => {
         _id: Date.now().toString(), // Temporary unique ID
         message: msg,
         conversationId: selectedConversation._id,
-        senderId: "currentUserId", // Replace with the actual sender's ID
+        senderId: authUser._id, // Replace with the actual sender's ID
         createdAt: new Date(),
       };
 

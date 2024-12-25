@@ -104,7 +104,7 @@ const Signup = () => {
           >{`Already have an account`}</a>
           <div className="w-full">
             <button className="btn btn-black w-full btn-sm mt-2">
-              Sign Up
+              {loader ? "processing..." : "Sign Up"}
             </button>
           </div>
         </form>
