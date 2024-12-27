@@ -67,7 +67,6 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useConversation } from "../zustand/useConversation";
-import axios from "axios";
 
 export const useGetMessage = () => {
   const [loading, setLoading] = useState(false);
@@ -79,10 +78,12 @@ export const useGetMessage = () => {
       try {
         setLoading(true);
 
-        const res = await axios.get(
+        const res = await fetch(
           `http://localhost:5000/api/message/${selectedConversation?._id}`,
           {
+            headers: { "Content-Type": "application/json" },
             withCredentials: true,
+            method: "GET",
           }
         );
 
