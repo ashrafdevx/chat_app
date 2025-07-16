@@ -3,7 +3,7 @@ import { IoIosLogOut } from "react-icons/io";
 import { UseLogout } from "../../hooks/useLogout";
 
 const Logout = () => {
-  const { loading, logout } = UseLogout();
+  const { logout } = UseLogout();
   return (
     <div className="mt-auto">
       <IoIosLogOut
