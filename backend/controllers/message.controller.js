@@ -24,25 +24,13 @@ export const sendMessage = async (req, res) => {
     await newMessage.save();
     await conversation.save();
 
-    // Notify receiver
+    // Notify receiver in real-time
     const recieverSocketId = getRecieverSocketID(recieverId);
     if (recieverSocketId) {
       io?.to(recieverSocketId).emit("newMessage", newMessage);
-      console.log("Message sent to receiver:", newMessage);
     }
 
-    // Notify sender (to update their own UI)
-    const senderSocketId = getRecieverSocketID(senderId);
-    if (senderSocketId) {
-      io?.to(senderSocketId).emit("newMessage", newMessage);
-      console.log("Message sent to sender:", newMessage);
-    }
-
-    return res.status(200).json({
-      status: 200,
-      message: message,
-      conversation,
-    });
+    return res.status(200).json(newMessage);
   } catch (error) {
     console.log("Message Controller:", error.message);
     res.status(500).json({ status: 500, error: error.message });

@@ -82,16 +82,16 @@ export const useGetMessage = () => {
           `http://localhost:5000/api/message/${selectedConversation?._id}`,
           {
             headers: { "Content-Type": "application/json" },
-            withCredentials: true,
+            credentials: "include",
             method: "GET",
           }
         );
 
-        if (!res?.data || !Array.isArray(res.data.messages)) {
-          sentMessage([]); // Ensure messages is always an array
+        const data = await res.json();
+        if (!data || !Array.isArray(data.messages)) {
+          sentMessage([]);
         } else {
-          // console.log("Get All Messages", res.data.messages);
-          sentMessage(res.data.messages); // Pass only the messages array
+          sentMessage(data.messages);
         }
       } catch (error) {
         toast.error(error.message);

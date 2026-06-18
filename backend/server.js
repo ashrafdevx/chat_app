@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+dotenv.config();
 import authRoutes from "./routes/auth.routes.js";
 import messageRoute from "./routes/message.routes.js";
 import userRoute from "./routes/user.routes.js";
@@ -8,12 +9,9 @@ import dbConnection from "./db/dbconnection.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import { app, server } from "./socket/socket.js";
-//ENV contastant
 
 const PORT = process.env.PORT || 5000;
 const dirname = path.resolve();
-// Config
-dotenv.config();
 
 // Middelware
 app.use(cookieParser());

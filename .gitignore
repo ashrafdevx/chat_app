@@ -3,6 +3,10 @@ node_modules/
 .pnp/
 .pnp.js
 
+# Build output
+frontend/build/
+backend/dist/
+
 # Logs
 logs/
 *.log
@@ -13,3 +17,9 @@ pnpm-debug.log*
 # Environment variables
 .env
 .env.local
+.env.*.local
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+.vscode/
