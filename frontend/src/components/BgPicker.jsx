@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { MdPalette } from "react-icons/md";
 
 export const BACKGROUNDS = [
@@ -62,7 +62,7 @@ export const loadSavedBackground = () => {
 const BgPicker = () => {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(
-    () => localStorage.getItem(BG_KEY) || "winter"
+    () => localStorage.getItem(BG_KEY) || "winter",
   );
 
   const handleSelect = (bg) => {
@@ -73,10 +73,10 @@ const BgPicker = () => {
   };
 
   return (
-    <div className="fixed bottom-5 left-5 z-50">
+    <div className="fixed z-50 bottom-5 left-5">
       {open && (
-        <div className="mb-3 bg-gray-900/90 backdrop-blur-md rounded-2xl p-3 shadow-2xl border border-white/10 w-64">
-          <p className="text-white/50 text-xs font-semibold uppercase tracking-widest px-1 mb-2">
+        <div className="w-64 p-3 mb-3 border shadow-2xl bg-gray-900/90 backdrop-blur-md rounded-2xl border-white/10">
+          <p className="px-1 mb-2 text-xs font-semibold tracking-widest uppercase text-white/50">
             Background
           </p>
           <div className="grid grid-cols-4 gap-2">
@@ -94,14 +94,14 @@ const BgPicker = () => {
               >
                 {selected === bg.id && (
                   <span className="absolute inset-0 flex items-center justify-center">
-                    <span className="w-2 h-2 rounded-full bg-blue-400 shadow shadow-blue-400" />
+                    <span className="w-2 h-2 bg-blue-400 rounded-full shadow shadow-blue-400" />
                   </span>
                 )}
               </button>
             ))}
           </div>
-          <div className="mt-2 px-1">
-            <p className="text-white/30 text-xs">
+          <div className="px-1 mt-2">
+            <p className="text-xs text-white/30">
               {BACKGROUNDS.find((b) => b.id === selected)?.label}
             </p>
           </div>
@@ -110,7 +110,7 @@ const BgPicker = () => {
 
       <button
         onClick={() => setOpen(!open)}
-        className="w-10 h-10 rounded-full bg-gray-800/80 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white shadow-lg hover:bg-gray-700/80 transition-all hover:scale-110"
+        className="flex items-center justify-center w-10 h-10 text-white transition-all border rounded-full shadow-lg bg-gray-800/80 backdrop-blur-sm border-white/20 hover:bg-gray-700/80 hover:scale-110"
       >
         <MdPalette size={20} />
       </button>
