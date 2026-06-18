@@ -1,1 +1,4 @@
-{ "rewrites": [{ "source": "/(.*)", "destination": "/" }] }
+{
+  "outputDirectory": "frontend/build",
+  "rewrites": [{ "source": "/(.*)", "destination": "/" }]
+}
